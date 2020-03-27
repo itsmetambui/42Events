@@ -12,8 +12,18 @@
 }
 @font-face {
   font-family: "Metropolis";
-  src: url(../assets/fonts/Metropolis-Black.woff) format("woff");
+  src: url(../assets/fonts/Metropolis-Regular.woff) format("woff");
   font-weight: 400;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url(../assets/fonts/Metropolis-Medium.woff) format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url(../assets/fonts/Metropolis-SemiBold.woff) format("woff");
+  font-weight: 600;
 }
 @font-face {
   font-family: "Metropolis";

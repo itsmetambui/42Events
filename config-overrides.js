@@ -10,7 +10,8 @@ module.exports = override(
     javascriptEnabled: true,
     modifyVars: {
       "@primary-color": "#ff5252",
-      "@link-color": "#2d3748",
+      "@link-color": "black",
+      "@text-color": "black",
     },
   }),
 )
