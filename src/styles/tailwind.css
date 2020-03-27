@@ -4,3 +4,28 @@
 /* purgecss end ignore */
 
 @tailwind utilities;
+
+@font-face {
+  font-family: "Metropolis";
+  src: url(../assets/fonts/Metropolis-Light.woff) format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url(../assets/fonts/Metropolis-Black.woff) format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url(../assets/fonts/Metropolis-Bold.woff) format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url(../assets/fonts/Metropolis-ExtraBold.woff) format("woff");
+  font-weight: 800;
+}
+
+* {
+  font-family: Metropolis;
+}
