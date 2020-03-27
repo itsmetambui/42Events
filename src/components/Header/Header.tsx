@@ -1,6 +1,6 @@
-import React from "react";
-import { BellOutlined, MenuOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import React from "react"
+import { BellOutlined, MenuOutlined } from "@ant-design/icons"
+import { Button } from "antd"
 
 const Header: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ const Header: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
