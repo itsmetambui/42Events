@@ -1,10 +1,15 @@
 import React from "react"
 import { BellOutlined, MenuOutlined } from "@ant-design/icons"
 import { Button } from "antd"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "../../store"
+import { toogleControlModal } from "../../reducers/uiSlice"
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>()
+
   return (
-    <div className="w-full px-4">
+    <div className="w-full">
       <div className="flex flex-row items-center justify-center max-w-screen-md mx-auto h-14">
         <div className="flex items-center justify-start w-1/3">
           <Button type="link" icon={<BellOutlined />} />
@@ -13,7 +18,11 @@ const Header: React.FC = () => {
           <h2 className="my-0 text-sm font-bold">Events</h2>
         </div>
         <div className="flex items-center justify-end w-1/3">
-          <Button type="link" icon={<MenuOutlined />} />
+          <Button
+            type="link"
+            icon={<MenuOutlined />}
+            onClick={() => dispatch(toogleControlModal())}
+          />
         </div>
       </div>
     </div>
