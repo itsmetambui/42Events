@@ -1,6 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import { Button } from "antd";
+import { BellOutlined } from "@ant-design/icons";
+import "./App.css";
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         >
           Learn React
         </a>
+        <Button type="primary" icon={<BellOutlined />}></Button>
       </header>
     </div>
   );
