@@ -5,15 +5,15 @@ import { Button } from "antd"
 const Header: React.FC = () => {
   return (
     <div className="w-full px-4">
-      <div className="flex flex-row items-center justify-center h-16 max-w-screen-md mx-auto">
+      <div className="flex flex-row items-center justify-center max-w-screen-md mx-auto h-14">
         <div className="flex items-center justify-start w-1/3">
-          <Button type="primary" icon={<BellOutlined />} />
+          <Button type="link" icon={<BellOutlined />} />
         </div>
         <div className="flex items-center justify-center w-1/3 ">
-          <h2 className="my-0">Events</h2>
+          <h2 className="my-0 text-sm font-bold">Events</h2>
         </div>
         <div className="flex items-center justify-end w-1/3">
-          <Button type="primary" icon={<MenuOutlined />} />
+          <Button type="link" icon={<MenuOutlined />} />
         </div>
       </div>
     </div>
