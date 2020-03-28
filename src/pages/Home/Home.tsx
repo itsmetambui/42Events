@@ -2,6 +2,8 @@ import React from "react"
 import EventCarousel from "../../components/EventCarousel/EventCarousel"
 import { useQuery } from "react-query"
 import axios from "axios"
+import EventTypeList from "./EventTypeList"
+import { Divider } from "antd"
 
 const fetchEvents = async () => {
   const response = await axios.get(
@@ -20,7 +22,7 @@ const Home: React.FC = () => {
       ) : status === "error" ? (
         <h2>Error: {error.message}</h2>
       ) : (
-        <div className="container h-screen mx-auto text-center">
+        <div className="container h-screen mx-auto">
           <EventCarousel
             data={data.featured.map(({ _id, banner_card, raceName }: any) => ({
               id: _id,
@@ -28,6 +30,11 @@ const Home: React.FC = () => {
               raceName: raceName,
             }))}
           />
+
+          <div>
+            <EventTypeList />
+            <Divider />
+          </div>
         </div>
       )}
     </div>
