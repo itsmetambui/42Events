@@ -4,6 +4,8 @@ import { useMediaQuery } from "react-responsive"
 import { NextArrow, PrevArrow } from "./Arrow"
 import RaceContent from "../RaceContent/RaceContent"
 
+const HALF_IMAGE_HEIGHT = 106
+
 export type EventType = {
   id: string
   raceName: string
@@ -33,8 +35,16 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
     speed: 500,
     slidesToShow: isMobile ? 1 : 2,
     slidesToScroll: isMobile ? 1 : 2,
-    nextArrow: <NextArrow styles={{ top: imageHeight / 2 }} />,
-    prevArrow: <PrevArrow styles={{ top: imageHeight / 2 }} />,
+    nextArrow: (
+      <NextArrow
+        styles={{ top: imageHeight ? imageHeight / 2 : HALF_IMAGE_HEIGHT }}
+      />
+    ),
+    prevArrow: (
+      <PrevArrow
+        styles={{ top: imageHeight ? imageHeight / 2 : HALF_IMAGE_HEIGHT }}
+      />
+    ),
   }
 
   useEffect(() => {

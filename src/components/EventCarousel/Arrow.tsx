@@ -7,7 +7,11 @@ const NextArrow = (props: any) => (
   <SliderButton
     {...props}
     icon={<RightOutlined />}
-    style={{ right: 0, transform: "translateX(50%)", ...props.styles }}
+    style={{
+      right: 0,
+      transform: "translateX(50%)",
+      ...props.styles,
+    }}
   />
 )
 
@@ -15,7 +19,11 @@ const PrevArrow = (props: any) => (
   <SliderButton
     {...props}
     icon={<LeftOutlined />}
-    style={{ left: 0, transform: "translateX(-50%)", ...props.styles }}
+    style={{
+      left: 0,
+      transform: "translateX(-50%)",
+      ...props.styles,
+    }}
   />
 )
 
