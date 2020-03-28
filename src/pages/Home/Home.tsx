@@ -1,5 +1,5 @@
 import React from "react"
-import RaceCarousel from "../../components/Carousel/RaceCarousel"
+import EventCarousel from "../../components/EventCarousel/EventCarousel"
 import { useQuery } from "react-query"
 import axios from "axios"
 
@@ -21,7 +21,7 @@ const Home: React.FC = () => {
         <h2>Error: {error.message}</h2>
       ) : (
         <div className="container h-screen mx-auto text-center">
-          <RaceCarousel
+          <EventCarousel
             data={data.featured.map(({ _id, banner_card, raceName }: any) => ({
               id: _id,
               bannerCard: banner_card,
