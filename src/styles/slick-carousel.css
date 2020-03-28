@@ -28,3 +28,25 @@
 .race-carousel .slick-dots li.slick-active button {
   opacity: 1;
 }
+
+.event-carousel .slick-slide {
+  padding: 1rem;
+}
+
+.event-carousel .slick-slide:nth-child(odd) {
+  padding-left: 0;
+}
+
+.event-carousel .slick-slide:nth-child(even) {
+  padding-right: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .event-carousel .slick-list {
+    /* overflow: visible; */
+  }
+
+  .event-carousel .slick-slide {
+    padding: 0;
+  }
+}

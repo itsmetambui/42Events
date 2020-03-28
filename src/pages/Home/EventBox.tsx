@@ -1,18 +1,41 @@
 import React from "react"
-import { Slider } from "antd"
+import EventCarousel from "../../components/EventCarousel/EventCarousel"
 
-type EventBoxProps = {
-  key: string
+export type EventType = {
+  id: string
+  raceName: string
+  bannerCard: string
+  racePeriod: string
+  categories: string[]
+  sportType: string
+  raceRunners: number
+  eventType: string
 }
 
-const EventBox: React.FC<EventBoxProps> = ({ key }) => {
+type EventBoxProps = {
+  title: string
+  data: any
+}
+
+const EventBox: React.FC<EventBoxProps> = ({ title, data }) => {
+  const carouselData = data.map((event: any) => ({
+    id: event._id,
+    raceName: event.race_name,
+    bannerCard: event.banner_card,
+    racePeriod: event.racePeriod,
+    categories: event.categories,
+    sportType: event.sportType,
+    raceRunners: event.raceRunners,
+    eventType: event.eventType,
+  }))
+
   return (
     <div>
-      <div>
-        <h2>{key}</h2>
+      <div className="flex flex-row items-center justify-between">
+        <h2 className="text-xl font-extrabold">{title}</h2>
         <span>View all ></span>
       </div>
-      <Slider />
+      <EventCarousel data={carouselData} />
     </div>
   )
 }

@@ -26,7 +26,6 @@ const SliderButton: React.FC<SliderButtonProps> = ({
     query: "(max-width: 768px)",
   })
   const styles = {
-    ...style,
     display: isMobile ? "none" : "block",
     top: "43%",
     right: direction === "right" ? "20%" : "auto",
@@ -35,6 +34,7 @@ const SliderButton: React.FC<SliderButtonProps> = ({
     zIndex: 1000,
     position: "absolute",
     boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
+    ...style,
   } as React.CSSProperties
 
   return (

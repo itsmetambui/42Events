@@ -1,9 +1,10 @@
 import React from "react"
-import EventCarousel from "../../components/FeatureCarousel/FeatureCarousel"
+import FeatureCarousel from "../../components/FeatureCarousel/FeatureCarousel"
 import { useQuery } from "react-query"
 import axios from "axios"
 import EventTypeList from "./EventTypeList"
 import { Divider } from "antd"
+import EventBox from "./EventBox"
 
 const fetchEvents = async () => {
   const response = await axios.get(
@@ -23,17 +24,19 @@ const Home: React.FC = () => {
         <h2>Error: {error.message}</h2>
       ) : (
         <div className="container h-screen mx-auto">
-          <EventCarousel
-            data={data.featured.map(({ _id, banner_card, raceName }: any) => ({
+          <FeatureCarousel
+            data={data.featured.map(({ _id, banner_card, race_name }: any) => ({
               id: _id,
               bannerCard: banner_card,
-              raceName: raceName,
+              raceName: race_name,
             }))}
           />
 
-          <div>
+          <div className="w-full max-w-screen-lg px-4 py-6 mx-auto">
             <EventTypeList />
             <Divider />
+
+            <EventBox title="Starting soon" data={data.startingSoon} />
           </div>
         </div>
       )}

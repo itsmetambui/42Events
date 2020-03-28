@@ -1,9 +1,9 @@
 import React from "react"
 import Slider from "react-slick"
 import { useMediaQuery } from "react-responsive"
-import SliderButton from "./SliderButton"
+import SliderButton from "../SliderButton/SliderButton"
 
-type EventCarouselProps = {
+type FeatureCarouselProps = {
   data: { id: string; bannerCard: string; raceName: string }[]
 }
 
@@ -18,7 +18,7 @@ const PrevArrow = (props: any) => (
   <SliderButton direction="left" hidden={props.currentSlide === 0} {...props} />
 )
 
-const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
+const FeatureCarousel: React.FC<FeatureCarouselProps> = ({ data }) => {
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   })
@@ -34,7 +34,7 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
   }
 
   return (
-    <Slider {...settings} className="w-full race-carousel">
+    <Slider {...settings} className="w-full text-center race-carousel">
       {data.map(({ id, bannerCard, raceName }) => (
         <div key={id} className="relative lg:max-w-screen-lg">
           {isMobile ? (
@@ -51,4 +51,4 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
   )
 }
 
-export default EventCarousel
+export default FeatureCarousel
