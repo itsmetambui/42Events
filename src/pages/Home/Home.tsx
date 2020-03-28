@@ -23,7 +23,7 @@ const Home: React.FC = () => {
       ) : status === "error" ? (
         <h2>Error: {error.message}</h2>
       ) : (
-        <div className="container h-screen mx-auto">
+        <div className="container h-screen pb-12 mx-auto">
           <FeatureCarousel
             data={data.featured.map(({ _id, banner_card, race_name }: any) => ({
               id: _id,
@@ -37,6 +37,18 @@ const Home: React.FC = () => {
             <Divider />
 
             <EventBox title="Starting soon" data={data.startingSoon} />
+            <Divider />
+            <EventBox title="Popular" data={data.popular} />
+            <Divider />
+            <EventBox title="New realease" data={data.newRelease} />
+            <Divider />
+            <EventBox title="Free events" data={data.free} />
+            <Divider />
+            <EventBox title="Past events" data={data.past} />
+
+            <span className="block mt-32 text-xs font-light text-center text-gray-400">
+              © 2019 42Race · Guide · Contact
+            </span>
           </div>
         </div>
       )}

@@ -47,14 +47,59 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
   }
 
   return (
-    <Slider {...settings} className="w-full mt-2 event-carousel">
-      {data.map(({ id, bannerCard, raceName }) => (
-        <div key={id} className="overflow-hidden event-box lg:max-w-screen-lg">
-          <img src={bannerCard} alt={raceName} className="w-full rounded-lg" />
-        </div>
-      ))}
+    <Slider {...settings} className="w-full event-carousel">
+      {data.map(
+        ({
+          id,
+          bannerCard,
+          raceName,
+          racePeriod,
+          sportType,
+          categories,
+          raceRunners,
+          eventType,
+        }) => {
+          // const tags = [
+          //   sportType,
+          //   categories,
+          //   `${raceRunners} joined`,
+          //   `${eventType} submission`,
+          // ].filter((tag) => tag !== undefined)
+          const tags = [sportType]
+            .concat(
+              categories,
+              `${raceRunners} joined`,
+              `${eventType} submission`,
+            )
+            .filter((tag) => tag !== undefined)
+          return (
+            <div key={id} className="event-box lg:max-w-screen-lg">
+              <img
+                src={bannerCard}
+                alt={raceName}
+                className="w-full rounded-lg"
+              />
+              <p className="mt-2 mb-0 text-base font-semibold">{raceName}</p>
+              <p className="mb-1 text-xs font-light ">{racePeriod}</p>
+              <div className="flex flex-row flex-wrap -mx-1">
+                {tags.map((tag) => (
+                  <div key={tag} className="p-1">
+                    <Tag name={tag} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        },
+      )}
     </Slider>
   )
 }
+
+const Tag = ({ name }: { name: string }) => (
+  <span className="px-2 py-1 text-xs capitalize border border-gray-300 border-solid rounded-full">
+    {name}
+  </span>
+)
 
 export default EventCarousel
