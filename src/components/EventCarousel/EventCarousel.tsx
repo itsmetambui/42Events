@@ -4,17 +4,20 @@ import { useMediaQuery } from "react-responsive"
 import Tag from "../Tag/Tag"
 import { NextArrow, PrevArrow } from "./Arrow"
 
+export type EventType = {
+  id: string
+  raceName: string
+  bannerCard: string
+  racePeriod: string
+  categories: string[]
+  sportType: string
+  raceRunners: number
+  eventType: string
+  racePrice: string
+}
+
 type EventCarouselProps = {
-  data: {
-    id: string
-    raceName: string
-    bannerCard: string
-    racePeriod: string
-    categories: string[]
-    sportType: string
-    raceRunners: number
-    eventType: string
-  }[]
+  data: EventType[]
 }
 
 const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
@@ -30,6 +33,8 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
     speed: 500,
     slidesToShow: isMobile ? 1 : 2,
     slidesToScroll: isMobile ? 1 : 2,
+    nextArrow: <NextArrow styles={{ top: imageHeight / 2 }} />,
+    prevArrow: <PrevArrow styles={{ top: imageHeight / 2 }} />,
   }
 
   useEffect(() => {
@@ -37,15 +42,10 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
       const height = imageRef.current.clientHeight
       setImageHeight(height)
     }
-  }, [])
+  }, [imageRef])
 
   return (
-    <Slider
-      {...settings}
-      prevArrow={<PrevArrow styles={{ top: imageHeight / 2 }} />}
-      nextArrow={<NextArrow styles={{ top: imageHeight / 2 }} />}
-      className="w-full event-carousel"
-    >
+    <Slider {...settings} className="w-full event-carousel">
       {data.map(
         ({
           id,
@@ -87,6 +87,14 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
       )}
     </Slider>
   )
+}
+
+type TagsType = {
+  categories: string[]
+  sportType: string
+  raceRunners: number
+  eventType: string
+  racePrice: string
 }
 
 export default EventCarousel

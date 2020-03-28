@@ -1,20 +1,10 @@
 import React from "react"
 import EventCarousel from "../../components/EventCarousel/EventCarousel"
-
-export type EventType = {
-  id: string
-  raceName: string
-  bannerCard: string
-  racePeriod: string
-  categories: string[]
-  sportType: string
-  raceRunners: number
-  eventType: string
-}
+import { EventType } from "@testing-library/react"
 
 type EventBoxProps = {
   title: string
-  data: any
+  data: EventType[]
 }
 
 const EventBox: React.FC<EventBoxProps> = ({ title, data }) => {
@@ -27,6 +17,7 @@ const EventBox: React.FC<EventBoxProps> = ({ title, data }) => {
     sportType: event.sportType,
     raceRunners: event.raceRunners,
     eventType: event.eventType,
+    racePrice: event.racePrice,
   }))
 
   return (
