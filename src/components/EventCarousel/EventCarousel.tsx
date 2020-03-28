@@ -1,24 +1,8 @@
 import React, { useRef, useEffect, useState } from "react"
 import Slider from "react-slick"
-import { LeftOutlined, RightOutlined } from "@ant-design/icons"
 import { useMediaQuery } from "react-responsive"
-import SliderButton from "../SliderButton/SliderButton"
-
-const NextArrow = (props: any) => (
-  <SliderButton
-    {...props}
-    icon={<RightOutlined />}
-    style={{ right: 0, transform: "translateX(50%)", ...props.styles }}
-  />
-)
-
-const PrevArrow = (props: any) => (
-  <SliderButton
-    {...props}
-    icon={<LeftOutlined />}
-    style={{ left: 0, transform: "translateX(-50%)", ...props.styles }}
-  />
-)
+import Tag from "../Tag/Tag"
+import { NextArrow, PrevArrow } from "./Arrow"
 
 type EventCarouselProps = {
   data: {
@@ -104,11 +88,5 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
     </Slider>
   )
 }
-
-const Tag = ({ name }: { name: string }) => (
-  <span className="px-2 py-1 text-xs capitalize border border-gray-300 border-solid rounded-full">
-    {name}
-  </span>
-)
 
 export default EventCarousel
