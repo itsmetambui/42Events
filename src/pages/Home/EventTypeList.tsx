@@ -32,7 +32,7 @@ const EventTypeList = () => {
         {types.map(({ type, imageUrl, backgroundColor, backgroundSize }) => (
           <div key={type} className="p-1 w-36 h-30">
             <div
-              className="block w-full h-full p-4 text-sm font-medium text-white bg-no-repeat rounded-lg cursor"
+              className="block w-full h-full p-4 text-sm font-medium text-white bg-no-repeat rounded-lg shadow-lg cursor"
               style={{
                 backgroundColor,
                 backgroundImage: `url(${imageUrl})`,

@@ -1,20 +1,22 @@
-import React from "react"
+import React, { useRef, useEffect, useState } from "react"
 import Slider from "react-slick"
+import { LeftOutlined, RightOutlined } from "@ant-design/icons"
 import { useMediaQuery } from "react-responsive"
 import SliderButton from "../SliderButton/SliderButton"
 
 const NextArrow = (props: any) => (
   <SliderButton
-    direction="right"
     {...props}
-    style={{ right: 0, transform: "translateX(50%)" }}
+    icon={<RightOutlined />}
+    style={{ right: 0, transform: "translateX(50%)", ...props.styles }}
   />
 )
+
 const PrevArrow = (props: any) => (
   <SliderButton
-    direction="left"
     {...props}
-    style={{ left: 0, transform: "translateX(-50%)" }}
+    icon={<LeftOutlined />}
+    style={{ left: 0, transform: "translateX(-50%)", ...props.styles }}
   />
 )
 
@@ -35,6 +37,8 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   })
+  const imageRef = useRef<HTMLImageElement>(null)
+  const [imageHeight, setImageHeight] = useState(0)
 
   const settings = {
     dots: false,
@@ -42,12 +46,22 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
     speed: 500,
     slidesToShow: isMobile ? 1 : 2,
     slidesToScroll: isMobile ? 1 : 2,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
   }
 
+  useEffect(() => {
+    if (imageRef.current !== null) {
+      const height = imageRef.current.clientHeight
+      setImageHeight(height)
+    }
+  }, [])
+
   return (
-    <Slider {...settings} className="w-full event-carousel">
+    <Slider
+      {...settings}
+      prevArrow={<PrevArrow styles={{ top: imageHeight / 2 }} />}
+      nextArrow={<NextArrow styles={{ top: imageHeight / 2 }} />}
+      className="w-full event-carousel"
+    >
       {data.map(
         ({
           id,
@@ -59,12 +73,6 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
           raceRunners,
           eventType,
         }) => {
-          // const tags = [
-          //   sportType,
-          //   categories,
-          //   `${raceRunners} joined`,
-          //   `${eventType} submission`,
-          // ].filter((tag) => tag !== undefined)
           const tags = [sportType]
             .concat(
               categories,
@@ -75,6 +83,7 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
           return (
             <div key={id} className="event-box lg:max-w-screen-lg">
               <img
+                ref={imageRef}
                 src={bannerCard}
                 alt={raceName}
                 className="w-full rounded-lg"

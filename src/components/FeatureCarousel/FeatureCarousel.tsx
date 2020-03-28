@@ -1,5 +1,6 @@
 import React from "react"
 import Slider from "react-slick"
+import { LeftOutlined, RightOutlined } from "@ant-design/icons"
 import { useMediaQuery } from "react-responsive"
 import SliderButton from "../SliderButton/SliderButton"
 
@@ -9,13 +10,27 @@ type FeatureCarouselProps = {
 
 const NextArrow = (props: any) => (
   <SliderButton
-    direction="right"
-    hidden={props.currentSlide === props.slideCount - 1}
     {...props}
+    hidden={props.currentSlide === props.slideCount - 1}
+    icon={<RightOutlined />}
+    style={{
+      top: "43%",
+      right: "20%",
+      ...props.style,
+    }}
   />
 )
 const PrevArrow = (props: any) => (
-  <SliderButton direction="left" hidden={props.currentSlide === 0} {...props} />
+  <SliderButton
+    {...props}
+    hidden={props.currentSlide === 0}
+    icon={<LeftOutlined />}
+    style={{
+      top: "43%",
+      left: "20%",
+      ...props.style,
+    }}
+  />
 )
 
 const FeatureCarousel: React.FC<FeatureCarouselProps> = ({ data }) => {
