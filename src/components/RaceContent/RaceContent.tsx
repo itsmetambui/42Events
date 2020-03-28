@@ -30,7 +30,7 @@ const RaceContent: React.FC<RaceContentProps> = ({
     .filter((tag) => tag !== undefined)
   return (
     <div>
-      <p className="mt-2 mb-0 text-base font-semibold">{raceName}</p>
+      <p className="mt-2 mb-0 text-sm font-semibold sm:text-base">{raceName}</p>
       <p className="mb-1 text-xs font-light ">{racePeriod}</p>
       <div className="flex flex-row flex-wrap -mx-1">
         {tags.map((tag) => (

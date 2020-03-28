@@ -20,19 +20,22 @@ const Races = () => {
       ) : status === "error" ? (
         <h2>Error: {error.message}</h2>
       ) : (
-        <div className="h-screen max-w-screen-md pt-10 mx-auto md:max-w-screen-lg">
+        <div className="container h-screen max-w-screen-md p-6 pt-10 mx-auto md:max-w-screen-lg">
           <h1 className="text-xl font-extrabold">{data.length} events</h1>
           {data.map((race: any) => {
             return (
-              <div key={race._id} className="flex flex-row items-start my-10">
+              <div
+                key={race._id}
+                className="flex flex-col items-start my-10 sm:flex-row"
+              >
                 {race.banner_card && (
                   <img
-                    className="w-1/3 rounded-lg"
+                    className="w-full rounded-lg sm:w-1/3"
                     src={race.banner_card}
                     alt={race.race_name}
                   />
                 )}
-                <div className="px-8 -mt-2">
+                <div className="px-0 mt-0 sm:-mt-2 sm:px-8">
                   <RaceContent
                     raceName={race.race_name}
                     racePeriod={race.racePeriod}
