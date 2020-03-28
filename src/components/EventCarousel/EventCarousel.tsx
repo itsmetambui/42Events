@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from "react"
 import Slider from "react-slick"
 import { useMediaQuery } from "react-responsive"
-import Tag from "../Tag/Tag"
 import { NextArrow, PrevArrow } from "./Arrow"
+import RaceContent from "../RaceContent/RaceContent"
 
 export type EventType = {
   id: string
@@ -46,47 +46,23 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
 
   return (
     <Slider {...settings} className="w-full event-carousel">
-      {data.map(
-        ({
-          id,
-          bannerCard,
-          raceName,
-          racePeriod,
-          sportType,
-          categories,
-          raceRunners,
-          eventType,
-          racePrice,
-        }) => {
-          const tags = [sportType]
-            .concat(
-              `${raceRunners} joined`,
-              racePrice,
-              categories,
-              `${eventType} submission`,
-            )
-            .filter((tag) => tag !== undefined)
-          return (
-            <div key={id} className="event-box lg:max-w-screen-lg">
-              <img
-                ref={imageRef}
-                src={bannerCard}
-                alt={raceName}
-                className="w-full rounded-lg"
-              />
-              <p className="mt-2 mb-0 text-base font-semibold">{raceName}</p>
-              <p className="mb-1 text-xs font-light ">{racePeriod}</p>
-              <div className="flex flex-row flex-wrap -mx-1">
-                {tags.map((tag) => (
-                  <div key={tag} className="p-1">
-                    <Tag name={tag} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )
-        },
-      )}
+      {data.map(({ id, bannerCard, raceName, racePeriod, ...raceContent }) => {
+        return (
+          <div key={id} className="event-box lg:max-w-screen-lg">
+            <img
+              ref={imageRef}
+              src={bannerCard}
+              alt={raceName}
+              className="w-full rounded-lg"
+            />
+            <RaceContent
+              {...raceContent}
+              raceName={raceName}
+              racePeriod={racePeriod}
+            />
+          </div>
+        )
+      })}
     </Slider>
   )
 }

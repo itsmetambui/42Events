@@ -1,16 +1,14 @@
 import React from "react"
-import FeatureCarousel from "../../components/FeatureCarousel/FeatureCarousel"
 import { useQuery } from "react-query"
-import axios from "axios"
 import EventTypeList from "./EventTypeList"
 import { Divider } from "antd"
 import EventBox from "./EventBox"
+import FeatureCarousel from "../../components/FeatureCarousel/FeatureCarousel"
+import backend from "../../config/axios"
 
 const fetchEvents = async () => {
-  const response = await axios.get(
-    "https://api-v2-sg-staging.42race.com/api/v1/race-events",
-  )
-  return response.data.data
+  const response = await backend.get("/race-events")
+  return response.data
 }
 
 const Home: React.FC = () => {
