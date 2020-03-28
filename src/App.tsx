@@ -5,7 +5,7 @@ import Header from "./components/Header/Header"
 import ControlModal from "./components/ControlModal/ControlModal"
 
 const Home = lazy(() => import("./pages/Home/Home"))
-
+const Races = lazy(() => import("./pages/Races/Races"))
 function App() {
   return (
     <div>
@@ -21,6 +21,7 @@ function App() {
           <ControlModal />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/races" component={Races} />
           </Switch>
         </Suspense>
       </Router>
