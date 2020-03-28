@@ -1,5 +1,5 @@
 import React from "react"
-import EventCarousel from "../../components/EventCarousel/EventCarousel"
+import EventCarousel from "../../components/FeatureCarousel/FeatureCarousel"
 import { useQuery } from "react-query"
 import axios from "axios"
 import EventTypeList from "./EventTypeList"
