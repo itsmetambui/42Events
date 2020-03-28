@@ -1,0 +1,30 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.race-carousel .slick-dots {
+  bottom: 23px;
+  cursor: pointer;
+}
+
+.race-carousel .slick-dots li {
+  width: unset;
+  height: unset;
+}
+
+.race-carousel .slick-dots li button {
+  border-radius: 50%;
+  border: 1px solid #fff;
+  width: 8px;
+  height: 8px;
+  background: #000;
+  opacity: 0.3;
+  padding: 0 !important;
+}
+
+.race-carousel .slick-dots li button::before {
+  display: none;
+}
+
+.race-carousel .slick-dots li.slick-active button {
+  opacity: 1;
+}

@@ -5,6 +5,8 @@
 
 @tailwind utilities;
 
+@import "./slick-carousel.css";
+
 @font-face {
   font-family: "Metropolis";
   src: url(../assets/fonts/Metropolis-Light.woff) format("woff");
