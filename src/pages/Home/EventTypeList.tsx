@@ -28,21 +28,23 @@ const EventTypeList = () => {
   return (
     <div>
       <h1 className="text-3xl font-extrabold">Events</h1>
-      <div className="flex flex-row items-center -mx-2">
+      <div className="flex flex-row flex-wrap items-center -mx-1">
         {types.map(({ type, imageUrl, backgroundColor, backgroundSize }) => (
-          <div
-            className="block p-4 mx-2 text-sm font-medium text-white bg-no-repeat rounded-lg cursor w-36 h-30"
-            style={{
-              backgroundColor,
-              backgroundImage: `url(${imageUrl})`,
-              backgroundSize,
-              backgroundPosition: "100%",
-            }}
-            onClick={() => {
-              /* TODO navigate to event route */
-            }}
-          >
-            <p className="capitalize ">{type}</p>
+          <div key={type} className="p-1 w-36 h-30">
+            <div
+              className="block w-full h-full p-4 text-sm font-medium text-white bg-no-repeat rounded-lg cursor"
+              style={{
+                backgroundColor,
+                backgroundImage: `url(${imageUrl})`,
+                backgroundSize,
+                backgroundPosition: "100%",
+              }}
+              onClick={() => {
+                /* TODO navigate to event route */
+              }}
+            >
+              <p className="capitalize ">{type}</p>
+            </div>
           </div>
         ))}
       </div>
