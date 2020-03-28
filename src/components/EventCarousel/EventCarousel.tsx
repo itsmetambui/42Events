@@ -56,11 +56,13 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
           categories,
           raceRunners,
           eventType,
+          racePrice,
         }) => {
           const tags = [sportType]
             .concat(
-              categories,
               `${raceRunners} joined`,
+              racePrice,
+              categories,
               `${eventType} submission`,
             )
             .filter((tag) => tag !== undefined)
