@@ -27,7 +27,7 @@ const types = [
 const EventTypeList = () => {
   return (
     <div>
-      <h1 className="text-3xl font-extrabold">Events</h1>
+      <h1 className="text-2xl font-extrabold sm:text-3xl">Events</h1>
       <div className="flex flex-row flex-wrap items-center -mx-1">
         {types.map(({ type, imageUrl, backgroundColor, backgroundSize }) => (
           <div key={type} className="p-1 w-36 h-30">

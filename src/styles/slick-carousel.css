@@ -43,10 +43,11 @@
 
 @media only screen and (max-width: 768px) {
   .event-carousel .slick-list {
-    /* overflow: visible; */
+    overflow: visible;
+    margin: 0 -4px;
   }
 
   .event-carousel .slick-slide {
-    padding: 0;
+    padding: 0 4px !important;
   }
 }

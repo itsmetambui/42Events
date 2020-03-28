@@ -32,7 +32,7 @@ const Home: React.FC = () => {
             }))}
           />
 
-          <div className="w-full max-w-screen-lg px-4 py-6 mx-auto">
+          <div className="w-full max-w-screen-lg p-6 mx-auto overflow-hidden">
             <EventTypeList />
             <Divider />
 
