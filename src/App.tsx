@@ -19,10 +19,12 @@ function App() {
         >
           <Header></Header>
           <ControlModal />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/races" component={Races} />
-          </Switch>
+          <div className="pt-14">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/races" component={Races} />
+            </Switch>
+          </div>
         </Suspense>
       </Router>
     </div>

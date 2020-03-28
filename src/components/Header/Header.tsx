@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { BellOutlined, MenuOutlined } from "@ant-design/icons"
 import { Button } from "antd"
 import { useDispatch, useSelector } from "react-redux"
@@ -15,11 +15,37 @@ const Header: React.FC = () => {
   const isControlModalOpen = useSelector(
     (state: AppState) => state.ui.isControlModalOpen,
   )
+  const [show, setShow] = useState(true)
   const widthCn = isControlModalOpen ? "w-screen" : "w-full"
   const dispatch = useDispatch<AppDispatch>()
+  let prevScrollY = useRef<number | null>(null)
+
+  useEffect(
+    function toggleHeaderOnScrool() {
+      const handleScroll = () => {
+        const { pageYOffset } = window
+        console.log(pageYOffset, prevScrollY.current)
+        setShow(
+          pageYOffset === 0 ||
+            (pageYOffset > 0 && pageYOffset < prevScrollY.current!),
+        )
+        prevScrollY.current = pageYOffset
+      }
+
+      window.addEventListener("scroll", handleScroll)
+      return () => {
+        window.removeEventListener("scroll", () => handleScroll)
+      }
+    },
+    [prevScrollY],
+  )
 
   return (
-    <HeaderContainer className={`sticky top-0 bg-white ${widthCn}`}>
+    <HeaderContainer
+      className={`fixed top-0 bg-white transform ${widthCn} ${
+        show ? "translate-y-0" : "-translate-y-14"
+      }`}
+    >
       <div className="flex flex-row items-center justify-center max-w-screen-sm px-2 mx-auto sm:max-w-screen-md h-14 sm:px-0">
         <div className="flex items-center justify-start w-1/3">
           <Button
