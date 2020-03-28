@@ -1,24 +1,26 @@
 import React from "react"
+import { Link } from "react-router-dom"
+
+import walkLogo from "../../assets/images/category-walk.png"
+import runLogo from "../../assets/images/category-run.png"
+import bikeLogo from "../../assets/images/category-bike.png"
 
 const types = [
   {
     type: "running",
-    imageUrl:
-      "https://virtual-race-submissions.s3-ap-southeast-1.amazonaws.com/images/category-run-png-nwn10102019-104426",
+    imageUrl: runLogo,
     backgroundColor: "rgb(8, 191, 169)",
     backgroundSize: "60%",
   },
   {
     type: "cycling",
-    imageUrl:
-      "https://virtual-race-submissions.s3-ap-southeast-1.amazonaws.com/images/category-bike-png-udy10102019-110227",
+    imageUrl: bikeLogo,
     backgroundColor: "rgb(58, 183, 240)",
     backgroundSize: "49%",
   },
   {
     type: "walking",
-    imageUrl:
-      "https://virtual-race-submissions.s3-ap-southeast-1.amazonaws.com/images/category-walk-png-67w10102019-110311",
+    imageUrl: walkLogo,
     backgroundColor: "rgb(255, 112, 67)",
     backgroundSize: "60%",
   },
@@ -31,20 +33,24 @@ const EventTypeList = () => {
       <div className="flex flex-row flex-wrap items-center -mx-1">
         {types.map(({ type, imageUrl, backgroundColor, backgroundSize }) => (
           <div key={type} className="p-1 w-36 h-30">
-            <div
-              className="block w-full h-full p-4 text-sm font-medium text-white bg-no-repeat rounded-lg shadow-lg cursor"
-              style={{
-                backgroundColor,
-                backgroundImage: `url(${imageUrl})`,
-                backgroundSize,
-                backgroundPosition: "100%",
-              }}
-              onClick={() => {
-                /* TODO navigate to event route */
+            <Link
+              to={{
+                pathname: "/races",
+                state: { query: { sportType: type } },
               }}
             >
-              <p className="capitalize ">{type}</p>
-            </div>
+              <div
+                className="block w-full h-full p-4 text-sm font-medium text-white bg-no-repeat rounded-lg shadow-lg cursor"
+                style={{
+                  backgroundColor,
+                  backgroundImage: `url(${imageUrl})`,
+                  backgroundSize,
+                  backgroundPosition: "100%",
+                }}
+              >
+                <p className="capitalize ">{type}</p>
+              </div>
+            </Link>
           </div>
         ))}
       </div>
