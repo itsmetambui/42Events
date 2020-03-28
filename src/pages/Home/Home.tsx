@@ -35,7 +35,6 @@ const Home: React.FC = () => {
           <div className="w-full max-w-screen-lg p-6 mx-auto overflow-hidden">
             <EventTypeList />
             <Divider />
-
             <EventBox title="Starting soon" data={data.startingSoon} />
             <Divider />
             <EventBox title="Popular" data={data.popular} />

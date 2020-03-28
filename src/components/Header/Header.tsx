@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 
   return (
     <HeaderContainer className={`sticky top-0 bg-white ${widthCn}`}>
-      <div className="flex flex-row items-center justify-center max-w-screen-sm mx-auto sm:max-w-screen-md h-14">
+      <div className="flex flex-row items-center justify-center max-w-screen-sm px-2 mx-auto sm:max-w-screen-md h-14 sm:px-0">
         <div className="flex items-center justify-start w-1/3">
           <Button
             type="link"
