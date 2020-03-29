@@ -1,19 +1,20 @@
 import React, { useEffect, useRef } from "react"
 import { useInfiniteQuery } from "react-query"
 import { useSelector, useDispatch } from "react-redux"
-import { Switch, Divider } from "antd"
+import { Switch, Divider, Button } from "antd"
 import { Spin } from "antd"
+import debounce from "lodash/debounce"
 
 import RaceContentLoader from "./RaceContentLoader"
 import { AppState } from "../../reducers/rootReducer"
 import { AppDispatch } from "../../store"
 import { fetchRaces, RaceDataType } from "../../api/racesApi"
 import RaceView from "./RaceView"
-import { toogleMedalView } from "../../reducers/raceQuerySlice"
+import { toogleMedalView, resetFilters } from "../../reducers/raceQuerySlice"
 import RaceMedalView from "./RaceMedalView"
 import RaceFilter from "./RaceFilter"
 import { filterSelector } from "../../reducers/raceQuerySlice"
-import debounce from "lodash/debounce"
+import calendarLogo from "../../assets/images/calendar.png"
 
 const Races = () => {
   const { isMedalView, ...filterQueries } = filterSelector(useSelector((state: AppState) => state))
@@ -44,11 +45,11 @@ const Races = () => {
     },
   })
   const debouncedFetchMore = debounce(fetchMore, 500)
+  console.log(data)
 
   useEffect(() => {
     const handleScroll = () => {
       console.log(window.pageYOffset, window.screen.availHeight, containerRef.current!.scrollHeight)
-
       if (window.pageYOffset + window.screen.availHeight >= containerRef.current!.scrollHeight) {
         debouncedFetchMore()
       }
@@ -72,15 +73,32 @@ const Races = () => {
       ) : (
         <div className="container max-w-screen-md p-6 mx-auto md:max-w-screen-lg">
           <div className="flex flex-row items-center justify-between">
-            <h1 className="m-0 text-xl font-extrabold">{data[0].total} events</h1>
+            {data[0].total === 0 ? <span></span> : <h1 className="m-0 text-xl font-extrabold">{data[0].total} events</h1>}
             <div className="flex flex-row items-center">
               <span className="mx-2 text-xs">Medal view</span>
               <Switch checked={isMedalView} onChange={() => dispatch(toogleMedalView())} />
             </div>
           </div>
-          {data.map((group, i) => (
-            <React.Fragment key={i}>{isMedalView ? <RaceMedalView data={group.races} /> : <RaceView data={group.races} />}</React.Fragment>
-          ))}
+          {data[0].total !== 0 ? (
+            data.map((group, i) => (
+              <React.Fragment key={i}>
+                {isMedalView ? <RaceMedalView data={group.races} /> : <RaceView data={group.races} />}
+              </React.Fragment>
+            ))
+          ) : (
+            <div className="flex flex-col items-center mt-12">
+              <img className="w-24 h-24" src={calendarLogo} alt="calendar" />
+              <h2 className="my-8 text-xs text-gray-600 sm:my-12 sm:text-base ">There are no events that match your filter</h2>
+              <Button
+                style={{ height: 36, fontFamily: "bold", padding: "0 20px" }}
+                type="primary"
+                shape="round"
+                onClick={() => dispatch(resetFilters())}
+              >
+                Reset filter
+              </Button>
+            </div>
+          )}
           {isFetching && !isFetchingMore && (
             <div className="mb-24 text-center">
               <Spin />

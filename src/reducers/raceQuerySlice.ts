@@ -67,6 +67,9 @@ const raceQuerySlice = createSlice({
       const { filter, value } = action.payload
       state[filter] = value
     },
+    resetFilters: (state: RaceQueryState): RaceQueryState => {
+      return { ...initialState, isMedalView: state.isMedalView }
+    },
   },
 })
 
@@ -75,7 +78,7 @@ const filterSelector = createSelector<AppState, RaceQueryState, RaceQueryState>(
   (queries) => queries,
 )
 
-const { toogleMedalView, updateSortType, updateFilter } = raceQuerySlice.actions
+const { toogleMedalView, updateSortType, updateFilter, resetFilters } = raceQuerySlice.actions
 
 export default raceQuerySlice
-export { toogleMedalView, updateSortType, updateFilter, filterSelector }
+export { toogleMedalView, updateSortType, updateFilter, filterSelector, resetFilters }
