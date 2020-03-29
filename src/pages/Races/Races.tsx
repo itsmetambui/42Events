@@ -20,7 +20,6 @@ const Races = () => {
   const { isMedalView, ...filterQueries } = filterSelector(useSelector((state: AppState) => state))
   const dispatch = useDispatch<AppDispatch>()
   const containerRef = useRef<HTMLDivElement>(null)
-  console.log("races")
 
   const {
     status,
