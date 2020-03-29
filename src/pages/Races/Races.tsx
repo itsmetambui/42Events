@@ -1,5 +1,5 @@
 import React from "react"
-import { useQuery } from "react-query"
+import { useInfiniteQuery } from "react-query"
 import { useSelector, useDispatch } from "react-redux"
 import { Switch, Divider } from "antd"
 
@@ -22,10 +22,29 @@ const Races = () => {
     status,
     error,
     data,
-  }: { status: string; error: any; data: RaceDataType } = useQuery(
-    ["races", { ...filterQueries }],
-    fetchRaces,
-  )
+    isFetching,
+    isFetchingMore,
+    fetchMore,
+    canFetchMore,
+  }: {
+    status: string
+    error: any
+    data: RaceDataType[]
+    isFetching: boolean
+    isFetchingMore: boolean
+    fetchMore: () => {}
+    canFetchMore: boolean
+  } = useInfiniteQuery(["races", { ...filterQueries }], fetchRaces, {
+    getFetchMore: (lastGroup: any, allGroup: any) => {
+      const total = lastGroup.total
+      const currentTotal = allGroup.reduce(
+        (acc: number, cur: any) => (acc += cur.races.length),
+        0,
+      )
+      if (currentTotal === total) return false
+      return currentTotal
+    },
+  })
   const dispatch = useDispatch<AppDispatch>()
 
   return (
@@ -40,7 +59,9 @@ const Races = () => {
       ) : (
         <div className="container max-w-screen-md p-6 mx-auto md:max-w-screen-lg">
           <div className="flex flex-row items-center justify-between">
-            <h1 className="m-0 text-xl font-extrabold">{data.total} events</h1>
+            <h1 className="m-0 text-xl font-extrabold">
+              {data[0].total} events
+            </h1>
             <div className="flex flex-row items-center">
               <span className="mx-2 text-xs">Medal view</span>
               <Switch
@@ -49,11 +70,28 @@ const Races = () => {
               />
             </div>
           </div>
-          {isMedalView ? (
-            <RaceMedalView data={data.races} />
-          ) : (
-            <RaceView data={data.races} />
-          )}
+          {data.map((group, i) => (
+            <React.Fragment key={i}>
+              {isMedalView ? (
+                <RaceMedalView data={group.races} />
+              ) : (
+                <RaceView data={group.races} />
+              )}
+            </React.Fragment>
+          ))}
+          <div>
+            <button
+              onClick={() => fetchMore()}
+              disabled={!canFetchMore || isFetchingMore}
+            >
+              {isFetchingMore
+                ? "Loading more..."
+                : canFetchMore
+                ? "Load More"
+                : "Nothing more to load"}
+            </button>
+          </div>
+          <div>{isFetching && !isFetchingMore ? "Fetching..." : null}</div>
         </div>
       )}
     </div>
