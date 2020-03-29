@@ -12,8 +12,7 @@
 [React Query](https://github.com/tannerlinsley/react-query) for data fetching
 [Ant Design](https://github.com/ant-design/ant-design) for its very complete set of components  
 [Styled Components](https://github.com/styled-components/styled-components) to extend Ant's default component styling  
-[TailwindCSS](https://github.com/tailwindcss/tailwindcss) to elegantly handle the rest of your app's UI  
-[LinguiJS](https://github.com/lingui/js-lingui) because that's the best all-in-one i18n solution that we found
+[TailwindCSS](https://github.com/tailwindcss/tailwindcss) to elegantly handle the rest of your app's UI
 
 ### And also:
 
@@ -23,15 +22,18 @@
 ## Main features
 
 ### Header
+
 - Sticky header that hides when scroll down / shows when scroll up or at the top of the page.
 - A control modal contains navigation links.
 
 ### Home page
+
 - A responsive carousel to display featured races.
 - An event list to navigate to Race page.
 - Multiple other responsive carousels to show main races.
 
 ### Races page
+
 - A form to filter races based on sport type, time, event type, pricing.
 - Persist filter states to localstorage with redux-persist.
 - Sort races based on start date, end date, most popular, new release.
@@ -39,6 +41,7 @@
 - Data fetching with infinite scroll.
 
 ## Project structure
+
 - src/pages: the 2 main pages of the projects - Home and Race
 - src/components: components that can be reused
 - src/reducers: redux state slices with redux toolkit
