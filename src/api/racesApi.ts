@@ -32,11 +32,11 @@ export const fetchRoot = async (): Promise<RootDataType> => {
   } = response
   return {
     featured: featured ? featured.map(mapFeatured) : [],
-    startingSoon: startingSoon ? startingSoon.map(mapOthers) : [],
-    popular: popular ? popular.map(mapOthers) : [],
-    newRelease: newRelease ? newRelease.map(mapOthers) : [],
-    free: free ? free.map(mapOthers) : [],
-    past: past ? past.map(mapOthers) : [],
+    startingSoon: startingSoon ? startingSoon.map(mapEvents) : [],
+    popular: popular ? popular.map(mapEvents) : [],
+    newRelease: newRelease ? newRelease.map(mapEvents) : [],
+    free: free ? free.map(mapEvents) : [],
+    past: past ? past.map(mapEvents) : [],
   }
 }
 
@@ -47,7 +47,7 @@ export const fetchRaces = async (
   const response = await backend.get("/race-filters", {
     params,
   })
-  return response.data.map(mapOthers)
+  return response.data.map(mapEvents)
 }
 
 const mapFeatured = ({ _id, banner_card, race_name }: any): FeaturedType => ({
@@ -56,7 +56,7 @@ const mapFeatured = ({ _id, banner_card, race_name }: any): FeaturedType => ({
   raceName: race_name,
 })
 
-const mapOthers = (event: any): EventType => ({
+const mapEvents = (event: any): EventType => ({
   id: event._id,
   raceName: event.race_name,
   bannerCard: event.banner_card,
