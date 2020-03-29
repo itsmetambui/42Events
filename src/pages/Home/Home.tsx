@@ -8,13 +8,11 @@ import EventBox from "./EventBox"
 import FeatureCarousel from "../../components/FeatureCarousel/FeatureCarousel"
 import EventTypeList from "./EventTypeList"
 
-const fetchEvents = async () => {
-  const response = await backend.get("/race-events")
-  return response.data
-}
-
 const Home: React.FC = () => {
-  const { status, error, data } = useQuery("events", fetchEvents)
+  const { status, error, data } = useQuery("events", async () => {
+    const response = await backend.get("/race-events")
+    return response.data
+  })
 
   return (
     <div>

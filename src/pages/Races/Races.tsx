@@ -5,14 +5,14 @@ import backend from "../../config/axios"
 import RaceContent from "../../components/RaceContent/RaceContent"
 import RaceContentLoader from "./RaceContentLoader"
 
-const fetchRaces = async ({ query }: any) => {
-  const response = await backend.get("/race-filters", { params: { ...query } })
-  return response.data
-}
-
 const Races = () => {
   const { state: query } = useLocation()
-  const { status, error, data } = useQuery("races", () => fetchRaces(query))
+  const { status, error, data } = useQuery("races", async () => {
+    const response = await backend.get("/race-filters", {
+      params: { ...query },
+    })
+    return response.data
+  })
 
   return (
     <div>
