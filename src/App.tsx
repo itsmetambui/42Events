@@ -1,8 +1,11 @@
 import React, { Suspense, lazy } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { Spin } from "antd"
+import { ArrowUpOutlined } from "@ant-design/icons"
+import { Spin, Button } from "antd"
+
 import Header from "./components/Header/Header"
 import ControlModal from "./components/ControlModal/ControlModal"
+import ScrollToTop from "react-scroll-up"
 
 const Home = lazy(() => import("./pages/Home/Home"))
 const Races = lazy(() => import("./pages/Races/Races"))
@@ -25,6 +28,9 @@ function App() {
               <Route path="/races" component={Races} />
             </Switch>
           </div>
+          <ScrollToTop showUnder={160} easing="easeOutCirc">
+            <Button size="large" type="primary" shape="circle" icon={<ArrowUpOutlined />} />
+          </ScrollToTop>
         </Suspense>
       </Router>
     </div>

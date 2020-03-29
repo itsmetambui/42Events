@@ -23,10 +23,10 @@ const RaceFilter: React.FC = () => {
           value={sortType}
           onChange={(value) => dispatch(updateSortType(value))}
         >
-          <Option value={SORT_TYPE.START_DATE}>Start date</Option>
-          <Option value={SORT_TYPE.END_DATE}>End date</Option>
-          <Option value={SORT_TYPE.MOST_POPULAR}>Most popular</Option>
-          <Option value={SORT_TYPE.NEW_RELEASE}>New release</Option>
+          <Option value={SORT_TYPE.START_DATE}>Sort: Start date</Option>
+          <Option value={SORT_TYPE.END_DATE}>Sort: End date</Option>
+          <Option value={SORT_TYPE.MOST_POPULAR}>Sort: Most popular</Option>
+          <Option value={SORT_TYPE.NEW_RELEASE}>Sort: New release</Option>
         </Select>
       </div>
       <div className="w-1/2 p-1 sm:w-32 sm:px-2">
