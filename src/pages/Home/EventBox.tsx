@@ -12,7 +12,6 @@ const EventBox: React.FC<EventBoxProps> = ({ title, data }) => {
     <div>
       <div className="flex flex-row items-center justify-between">
         <h2 className="mb-2 text-base font-extrabold sm:m-0 sm:text-xl">{title}</h2>
-        <span>View all ></span>
       </div>
       <EventCarousel data={data} />
     </div>

@@ -20,6 +20,7 @@ const Races = () => {
   const { isMedalView, ...filterQueries } = filterSelector(useSelector((state: AppState) => state))
   const dispatch = useDispatch<AppDispatch>()
   const containerRef = useRef<HTMLDivElement>(null)
+  console.log("races")
 
   const {
     status,
@@ -45,12 +46,11 @@ const Races = () => {
     },
   })
   const debouncedFetchMore = debounce(fetchMore, 500)
-  console.log(data)
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log(window.pageYOffset, window.screen.availHeight, containerRef.current!.scrollHeight)
-      if (window.pageYOffset + window.screen.availHeight >= containerRef.current!.scrollHeight) {
+      if (containerRef.current === null) return
+      if (window.pageYOffset + window.screen.availHeight >= containerRef.current.scrollHeight) {
         debouncedFetchMore()
       }
     }
