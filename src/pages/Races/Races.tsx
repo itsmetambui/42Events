@@ -14,8 +14,9 @@ import RaceMedalView from "./RaceMedalView"
 import RaceFilter from "./RaceFilter"
 
 const Races = () => {
-  const { state: query } = useLocation()
-  console.log(query)
+  const {
+    state: { query },
+  } = useLocation()
   const { status, error, data } = useQuery("races", () => fetchRaces(query))
 
   const isModalView = useSelector(
@@ -37,7 +38,7 @@ const Races = () => {
           <div className="flex flex-row items-center justify-between">
             <h1 className="m-0 text-xl font-extrabold">{data.length} events</h1>
             <div className="flex flex-row items-center">
-              <span className="mx-2 text-xs">Modal view</span>
+              <span className="mx-2 text-xs">Medal view</span>
               <Switch
                 checked={isModalView}
                 onChange={() => dispatch(toogleMedalView())}

@@ -40,11 +40,9 @@ export const fetchRoot = async (): Promise<RootDataType> => {
   }
 }
 
-export const fetchRaces = async ({
-  query,
-}: {
-  query: { [key: string]: string } | null | undefined
-}): Promise<EventType[]> => {
+export const fetchRaces = async (
+  query: { [key: string]: string } | null | undefined,
+): Promise<EventType[]> => {
   const params = query ? { ...query } : {}
   const response = await backend.get("/race-filters", {
     params,
