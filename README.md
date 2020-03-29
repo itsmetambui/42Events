@@ -1,4 +1,4 @@
-# A test project for 42Race - The top virtual race platform - with React / Typescript / Redux
+# 42Race - The top virtual race platform - with React / Typescript / Redux
 
 - This project is host at: [42race.netlify.com](42race.netlify.com)
 - Below is the main points that'll help reviewers to better go through the project 👍.
