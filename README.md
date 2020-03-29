@@ -46,4 +46,9 @@
 - src/components: components that can be reused
 - src/reducers: redux state slices with redux toolkit
 
+## To be improved
+
+- View all button should navigate users to race page with corresponding sort value
+- I18n support
+
 ### That's it, thank you for reading, happy hacking 🎉
