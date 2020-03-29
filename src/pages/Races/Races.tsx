@@ -101,7 +101,7 @@ const Races = () => {
           )}
           {isFetching && !isFetchingMore && (
             <div className="mb-24 text-center">
-              <Spin />
+              <Spin size="large" />
             </div>
           )}
         </div>
