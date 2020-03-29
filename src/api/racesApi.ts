@@ -14,6 +14,9 @@ export type EventType = FeaturedType & {
   raceRunners: number
   eventType: string
   racePrice: string
+  startDate: string
+  endDate: string
+  [key: string]: string | string[] | number
 }
 
 type RootDataType = {
@@ -41,11 +44,19 @@ export const fetchRoot = async (): Promise<RootDataType> => {
 }
 
 export const fetchRaces = async (
-  query: { [key: string]: string } | null | undefined,
+  key: string,
+  query: any,
 ): Promise<EventType[]> => {
-  const params = query ? { ...query } : {}
+  console.log("called")
+  const { sortType, sportType, eventTime, eventType, priceType } = query
   const response = await backend.get("/race-filters", {
-    params,
+    params: {
+      sort: sortType,
+      sportType,
+      dates: eventTime,
+      eventType,
+      price: priceType,
+    },
   })
   return response.data.map(mapEvents)
 }
@@ -67,4 +78,6 @@ const mapEvents = (event: any): EventType => ({
   raceRunners: event.raceRunners,
   eventType: event.eventType,
   racePrice: event.racePrice,
+  startDate: event.start_date,
+  endDate: event.end_date,
 })

@@ -7,20 +7,30 @@ import { Switch, Divider } from "antd"
 import RaceContentLoader from "./RaceContentLoader"
 import { AppState } from "../../reducers/rootReducer"
 import { AppDispatch } from "../../store"
-import { fetchRaces } from "../../api/racesApi"
+import { fetchRaces, EventType } from "../../api/racesApi"
 import RaceView from "./RaceView"
 import { toogleMedalView } from "../../reducers/raceQuerySlice"
 import RaceMedalView from "./RaceMedalView"
 import RaceFilter from "./RaceFilter"
+import { filterSelector } from "../../reducers/raceQuerySlice"
 
 const Races = () => {
   const {
     state: { query },
   } = useLocation()
-  const { status, error, data } = useQuery("races", () => fetchRaces(query))
 
-  const isModalView = useSelector(
-    (state: AppState) => state.raceQuery.isMedalView,
+  const { isMedalView, ...filterQueries } = filterSelector(
+    useSelector((state: AppState) => state),
+  )
+  console.log("changed")
+
+  const {
+    status,
+    error,
+    data,
+  }: { status: string; error: any; data: EventType[] } = useQuery(
+    ["races", { ...filterQueries }],
+    fetchRaces,
   )
   const dispatch = useDispatch<AppDispatch>()
 
@@ -40,12 +50,12 @@ const Races = () => {
             <div className="flex flex-row items-center">
               <span className="mx-2 text-xs">Medal view</span>
               <Switch
-                checked={isModalView}
+                checked={isMedalView}
                 onChange={() => dispatch(toogleMedalView())}
               />
             </div>
           </div>
-          {isModalView ? (
+          {isMedalView ? (
             <RaceMedalView data={data} />
           ) : (
             <RaceView data={data} />
