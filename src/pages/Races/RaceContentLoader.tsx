@@ -1,7 +1,7 @@
 import React from "react"
 
 import { useMediaQuery } from "react-responsive"
-import RaceLoader from "../Home/RaceLoader"
+import RaceLoader from "../../components/Loaders/RaceLoader"
 import BlockLoader from "../../components/Loaders/BlockLoader"
 
 const RaceContentLoader = () => {
