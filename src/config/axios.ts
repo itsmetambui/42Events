@@ -7,11 +7,11 @@ let backend = axios.create({
 })
 
 backend.interceptors.response.use(
-  (response) => {
+  (response: any) => {
     return response.data
   },
 
-  (error) => {
+  (error: any) => {
     return Promise.reject(error)
   },
 )

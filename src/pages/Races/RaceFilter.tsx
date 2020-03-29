@@ -7,14 +7,24 @@ import {
   EVENT_TYPE,
   PRICE_TYPE,
 } from "../../reducers/raceQuerySlice"
-import { useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { AppDispatch } from "../../store"
 import { updateSortType, updateFilter } from "../../reducers/raceQuerySlice"
+import { filterSelector } from "../../reducers/raceQuerySlice"
+import { AppState } from "../../reducers/rootReducer"
 
 const { Option } = Select
 
 const RaceFilter: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
+
+  const {
+    sortType,
+    sportType,
+    eventTime,
+    eventType,
+    priceType,
+  } = filterSelector(useSelector((state: AppState) => state))
 
   return (
     <div className="container flex flex-row flex-wrap items-center justify-start max-w-screen-md px-6 mx-auto md:max-w-screen-lg">
@@ -22,6 +32,7 @@ const RaceFilter: React.FC = () => {
         <Select
           style={{ width: "100%" }}
           defaultValue={SORT_TYPE.START_DATE}
+          value={sortType}
           onChange={(value) => dispatch(updateSortType(value))}
         >
           <Option value={SORT_TYPE.START_DATE}>Start date</Option>
@@ -34,6 +45,7 @@ const RaceFilter: React.FC = () => {
         <Select
           style={{ width: "100%" }}
           defaultValue={SPORT_TYPE.ALL}
+          value={sportType}
           onChange={(value) =>
             dispatch(updateFilter({ filter: "sportType", value }))
           }
@@ -48,6 +60,7 @@ const RaceFilter: React.FC = () => {
         <Select
           style={{ width: "100%" }}
           defaultValue={EVENT_TIME.ALL}
+          value={eventTime}
           onChange={(value) =>
             dispatch(updateFilter({ filter: "eventTime", value }))
           }
@@ -62,6 +75,7 @@ const RaceFilter: React.FC = () => {
         <Select
           style={{ width: "100%" }}
           defaultValue={EVENT_TYPE.ALL}
+          value={eventType}
           onChange={(value) =>
             dispatch(updateFilter({ filter: "eventType", value }))
           }
@@ -75,6 +89,7 @@ const RaceFilter: React.FC = () => {
         <Select
           style={{ width: "100%" }}
           defaultValue={PRICE_TYPE.ALL}
+          value={priceType}
           onChange={(value) =>
             dispatch(updateFilter({ filter: "priceType", value }))
           }
