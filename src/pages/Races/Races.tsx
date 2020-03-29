@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"
 import { useQuery } from "react-query"
 import backend from "../../config/axios"
 import RaceContent from "../../components/RaceContent/RaceContent"
+import RaceContentLoader from "./RaceContentLoader"
 
 const fetchRaces = async ({ query }: any) => {
   const response = await backend.get("/race-filters", { params: { ...query } })
@@ -16,7 +17,7 @@ const Races = () => {
   return (
     <div>
       {status === "loading" ? (
-        <h2>TODO: add loading placeholder</h2>
+        <RaceContentLoader />
       ) : status === "error" ? (
         <h2>Error: {error.message}</h2>
       ) : (
