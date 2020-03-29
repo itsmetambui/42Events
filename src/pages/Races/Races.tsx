@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react"
 import { useInfiniteQuery } from "react-query"
 import { useSelector, useDispatch } from "react-redux"
 import { Switch, Divider } from "antd"
+import { Spin } from "antd"
 
 import RaceContentLoader from "./RaceContentLoader"
 import { AppState } from "../../reducers/rootReducer"
@@ -12,6 +13,7 @@ import { toogleMedalView } from "../../reducers/raceQuerySlice"
 import RaceMedalView from "./RaceMedalView"
 import RaceFilter from "./RaceFilter"
 import { filterSelector } from "../../reducers/raceQuerySlice"
+import debounce from "lodash/debounce"
 
 const Races = () => {
   const { isMedalView, ...filterQueries } = filterSelector(useSelector((state: AppState) => state))
@@ -25,7 +27,6 @@ const Races = () => {
     isFetching,
     isFetchingMore,
     fetchMore,
-    canFetchMore,
   }: {
     status: string
     error: any
@@ -42,13 +43,14 @@ const Races = () => {
       return currentTotal
     },
   })
+  const debouncedFetchMore = debounce(fetchMore, 500)
 
   useEffect(() => {
     const handleScroll = () => {
       console.log(window.pageYOffset, window.screen.availHeight, containerRef.current!.scrollHeight)
 
       if (window.pageYOffset + window.screen.availHeight >= containerRef.current!.scrollHeight) {
-        fetchMore()
+        debouncedFetchMore()
       }
     }
 
@@ -56,7 +58,7 @@ const Races = () => {
     return () => {
       window.removeEventListener("scroll", () => handleScroll)
     }
-  }, [fetchMore, containerRef])
+  }, [debouncedFetchMore, containerRef])
 
   return (
     <div ref={containerRef}>
@@ -79,12 +81,11 @@ const Races = () => {
           {data.map((group, i) => (
             <React.Fragment key={i}>{isMedalView ? <RaceMedalView data={group.races} /> : <RaceView data={group.races} />}</React.Fragment>
           ))}
-          <div>
-            <button onClick={() => fetchMore()} disabled={!canFetchMore || isFetchingMore}>
-              {isFetchingMore ? "Loading more..." : canFetchMore ? "Load More" : "Nothing more to load"}
-            </button>
-          </div>
-          <div>{isFetching && !isFetchingMore ? "Fetching..." : null}</div>
+          {isFetching && !isFetchingMore && (
+            <div className="mb-24 text-center">
+              <Spin />
+            </div>
+          )}
         </div>
       )}
     </div>
