@@ -12,9 +12,10 @@ const RaceContentLoader = () => {
   return (
     <div className="container h-screen max-w-screen-md p-6 pt-10 mx-auto md:max-w-screen-lg">
       <h1 className="text-xl font-extrabold">Loading events</h1>
-      {[...Array(10)].map(() =>
+      {[...Array(10)].map((_, i) =>
         isMobile ? (
           <BlockLoader
+            key={i}
             speed={2}
             viewBox="0 0 400 200"
             backgroundColor="#d9d9d9"
@@ -23,6 +24,7 @@ const RaceContentLoader = () => {
           />
         ) : (
           <RaceLoader
+            key={i}
             viewBox={`0 0 1060 200`}
             style={{ width: "100%" }}
             speed={2}

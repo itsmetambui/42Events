@@ -24,7 +24,6 @@ const Header: React.FC = () => {
     function toggleHeaderOnScrool() {
       const handleScroll = () => {
         const { pageYOffset } = window
-        console.log(pageYOffset, prevScrollY.current)
         setShow(
           pageYOffset === 0 ||
             (pageYOffset > 0 && pageYOffset < prevScrollY.current!),
@@ -46,7 +45,7 @@ const Header: React.FC = () => {
         show ? "translate-y-0" : "-translate-y-14"
       }`}
     >
-      <div className="flex flex-row items-center justify-center max-w-screen-sm px-2 mx-auto sm:max-w-screen-md h-14 sm:px-0">
+      <div className="flex flex-row items-center justify-center max-w-screen-md px-4 mx-auto md:max-w-screen-lg h-14">
         <div className="flex items-center justify-start w-1/3">
           <Button
             type="link"

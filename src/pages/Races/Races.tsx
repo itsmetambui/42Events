@@ -21,7 +21,7 @@ const Races = () => {
       ) : status === "error" ? (
         <h2>Error: {error.message}</h2>
       ) : (
-        <div className="container h-screen max-w-screen-md p-6 pt-10 mx-auto md:max-w-screen-lg">
+        <div className="container max-w-screen-md p-6 pt-10 mx-auto md:max-w-screen-lg">
           <h1 className="text-xl font-extrabold">{data.length} events</h1>
           {data.map((race: any) => {
             return (
