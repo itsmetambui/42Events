@@ -11,22 +11,9 @@ type RaceContentProps = {
   eventType: string
 }
 
-const RaceContent: React.FC<RaceContentProps> = ({
-  raceName,
-  racePeriod,
-  sportType,
-  raceRunners,
-  racePrice,
-  categories,
-  eventType,
-}) => {
+const RaceContent: React.FC<RaceContentProps> = ({ raceName, racePeriod, sportType, raceRunners, racePrice, categories, eventType }) => {
   const tags = [sportType]
-    .concat(
-      `${raceRunners} joined`,
-      racePrice,
-      categories,
-      `${eventType} submission`,
-    )
+    .concat(`${raceRunners} joined`, racePrice, categories, `${eventType} submission`)
     .filter((tag) => tag !== undefined)
   return (
     <div>

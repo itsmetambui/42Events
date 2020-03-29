@@ -23,12 +23,7 @@ const RaceContentLoader = () => {
             style={{ width: "100%", marginTop: 20 }}
           />
         ) : (
-          <RaceLoader
-            key={i}
-            viewBox={`0 0 1060 200`}
-            style={{ width: "100%" }}
-            speed={2}
-          />
+          <RaceLoader key={i} viewBox={`0 0 1060 200`} style={{ width: "100%" }} speed={2} />
         ),
       )}
     </div>

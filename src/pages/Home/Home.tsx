@@ -34,9 +34,7 @@ const Home: React.FC = () => {
             <Divider />
             <EventBox title="Past events" data={data.past} />
 
-            <span className="block mt-32 mb-12 text-xs font-light text-center text-gray-400">
-              © 2019 42Race · Guide · Contact
-            </span>
+            <span className="block mt-32 mb-12 text-xs font-light text-center text-gray-400">© 2019 42Race · Guide · Contact</span>
           </div>
         </div>
       )}

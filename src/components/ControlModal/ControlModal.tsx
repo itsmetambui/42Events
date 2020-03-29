@@ -1,11 +1,6 @@
 import React from "react"
 import { Modal, Menu, Divider } from "antd"
-import {
-  CodepenOutlined,
-  QuestionCircleOutlined,
-  CustomerServiceOutlined,
-  EditOutlined,
-} from "@ant-design/icons"
+import { CodepenOutlined, QuestionCircleOutlined, CustomerServiceOutlined, EditOutlined } from "@ant-design/icons"
 import { useSelector, useDispatch } from "react-redux"
 
 import { AppState } from "../../reducers/rootReducer"
@@ -16,9 +11,7 @@ import LanguageSelector from "../LanguageSelector/LanguageSelector"
 const { SubMenu } = Menu
 
 const ControlModal: React.FC = () => {
-  const isControlModalOpen = useSelector(
-    (state: AppState) => state.ui.isControlModalOpen,
-  )
+  const isControlModalOpen = useSelector((state: AppState) => state.ui.isControlModalOpen)
   const dispatch = useDispatch<AppDispatch>()
 
   return (
@@ -62,9 +55,7 @@ const ControlModal: React.FC = () => {
 
 type MenuItem = {
   key: string
-  Icon: React.ForwardRefExoticComponent<
-    any & React.RefAttributes<HTMLSpanElement>
-  >
+  Icon: React.ForwardRefExoticComponent<any & React.RefAttributes<HTMLSpanElement>>
   title: string
 }
 

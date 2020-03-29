@@ -42,9 +42,7 @@ const EventTypeList = () => {
               to={{
                 pathname: "/races",
               }}
-              onClick={() =>
-                dispatch(updateFilter({ filter: "sportType", value: type }))
-              }
+              onClick={() => dispatch(updateFilter({ filter: "sportType", value: type }))}
             >
               <div
                 className="block w-full h-full p-4 text-sm font-medium text-white bg-no-repeat rounded-lg shadow-lg cursor"

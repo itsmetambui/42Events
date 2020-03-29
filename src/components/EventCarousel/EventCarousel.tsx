@@ -24,16 +24,8 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
     speed: 500,
     slidesToShow: isMobile ? 1 : 2,
     slidesToScroll: isMobile ? 1 : 2,
-    nextArrow: (
-      <NextArrow
-        styles={{ top: imageHeight ? imageHeight / 2 : HALF_IMAGE_HEIGHT }}
-      />
-    ),
-    prevArrow: (
-      <PrevArrow
-        styles={{ top: imageHeight ? imageHeight / 2 : HALF_IMAGE_HEIGHT }}
-      />
-    ),
+    nextArrow: <NextArrow styles={{ top: imageHeight ? imageHeight / 2 : HALF_IMAGE_HEIGHT }} />,
+    prevArrow: <PrevArrow styles={{ top: imageHeight ? imageHeight / 2 : HALF_IMAGE_HEIGHT }} />,
   }
 
   useEffect(() => {
@@ -48,17 +40,8 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ data }) => {
       {data.map(({ id, bannerCard, raceName, racePeriod, ...raceContent }) => {
         return (
           <div key={id} className="event-box lg:max-w-screen-lg">
-            <img
-              ref={imageRef}
-              src={bannerCard}
-              alt={raceName}
-              className="w-full rounded-lg"
-            />
-            <RaceContent
-              {...raceContent}
-              raceName={raceName}
-              racePeriod={racePeriod}
-            />
+            <img ref={imageRef} src={bannerCard} alt={raceName} className="w-full rounded-lg" />
+            <RaceContent {...raceContent} raceName={raceName} racePeriod={racePeriod} />
           </div>
         )
       })}

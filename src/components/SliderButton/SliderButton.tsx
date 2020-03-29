@@ -5,22 +5,14 @@ import { useMediaQuery } from "react-responsive"
 type SliderButtonProps = {
   className?: string
   style?: React.CSSProperties
-  onClick?:
-    | ((event: React.MouseEvent<HTMLElement, MouseEvent>) => void)
-    | undefined
+  onClick?: ((event: React.MouseEvent<HTMLElement, MouseEvent>) => void) | undefined
   currentSlide?: number
   slideCount?: number
   hidden?: boolean
   icon: React.ReactElement
 }
 
-const SliderButton: React.FC<SliderButtonProps> = ({
-  className,
-  style,
-  onClick,
-  hidden,
-  icon,
-}) => {
+const SliderButton: React.FC<SliderButtonProps> = ({ className, style, onClick, hidden, icon }) => {
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   })
@@ -33,16 +25,7 @@ const SliderButton: React.FC<SliderButtonProps> = ({
     ...style,
   } as React.CSSProperties
 
-  return (
-    <Button
-      className={className}
-      style={styles}
-      onClick={onClick}
-      shape="circle"
-      icon={icon}
-      hidden={hidden}
-    />
-  )
+  return <Button className={className} style={styles} onClick={onClick} shape="circle" icon={icon} hidden={hidden} />
 }
 
 export default SliderButton

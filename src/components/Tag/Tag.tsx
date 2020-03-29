@@ -8,13 +8,7 @@ const Tag = ({ name }: { name: string }) => (
     {/* Of course there's better ways but it just not worth it */}
     {(name === "running" || name === "walking" || name === "cycling") && (
       <img
-        src={
-          name === "running"
-            ? runningIcon
-            : name === "walking"
-            ? walkingIcon
-            : cyclingIcon
-        }
+        src={name === "running" ? runningIcon : name === "walking" ? walkingIcon : cyclingIcon}
         alt="tag icon"
         className="w-3 h-3 mr-1"
       />

@@ -1,12 +1,6 @@
 import React from "react"
 import { Select } from "antd"
-import {
-  SORT_TYPE,
-  SPORT_TYPE,
-  EVENT_TIME,
-  EVENT_TYPE,
-  PRICE_TYPE,
-} from "../../reducers/raceQuerySlice"
+import { SORT_TYPE, SPORT_TYPE, EVENT_TIME, EVENT_TYPE, PRICE_TYPE } from "../../reducers/raceQuerySlice"
 import { useSelector, useDispatch } from "react-redux"
 import { AppDispatch } from "../../store"
 import { updateSortType, updateFilter } from "../../reducers/raceQuerySlice"
@@ -18,13 +12,7 @@ const { Option } = Select
 const RaceFilter: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
 
-  const {
-    sortType,
-    sportType,
-    eventTime,
-    eventType,
-    priceType,
-  } = filterSelector(useSelector((state: AppState) => state))
+  const { sortType, sportType, eventTime, eventType, priceType } = filterSelector(useSelector((state: AppState) => state))
 
   return (
     <div className="container flex flex-row flex-wrap items-center justify-start max-w-screen-md px-6 mx-auto md:max-w-screen-lg">
@@ -46,9 +34,7 @@ const RaceFilter: React.FC = () => {
           style={{ width: "100%" }}
           defaultValue={SPORT_TYPE.ALL}
           value={sportType}
-          onChange={(value) =>
-            dispatch(updateFilter({ filter: "sportType", value }))
-          }
+          onChange={(value) => dispatch(updateFilter({ filter: "sportType", value }))}
         >
           <Option value={SPORT_TYPE.ALL}>All sports</Option>
           <Option value={SPORT_TYPE.RUNNING}>Running</Option>
@@ -61,9 +47,7 @@ const RaceFilter: React.FC = () => {
           style={{ width: "100%" }}
           defaultValue={EVENT_TIME.ALL}
           value={eventTime}
-          onChange={(value) =>
-            dispatch(updateFilter({ filter: "eventTime", value }))
-          }
+          onChange={(value) => dispatch(updateFilter({ filter: "eventTime", value }))}
         >
           <Option value={EVENT_TIME.ALL}>All dates</Option>
           <Option value={EVENT_TIME.PAST}>Past events</Option>
@@ -76,9 +60,7 @@ const RaceFilter: React.FC = () => {
           style={{ width: "100%" }}
           defaultValue={EVENT_TYPE.ALL}
           value={eventType}
-          onChange={(value) =>
-            dispatch(updateFilter({ filter: "eventType", value }))
-          }
+          onChange={(value) => dispatch(updateFilter({ filter: "eventType", value }))}
         >
           <Option value={EVENT_TYPE.ALL}>All event types</Option>
           <Option value={EVENT_TYPE.SIGNLE}>Single submission</Option>
@@ -90,9 +72,7 @@ const RaceFilter: React.FC = () => {
           style={{ width: "100%" }}
           defaultValue={PRICE_TYPE.ALL}
           value={priceType}
-          onChange={(value) =>
-            dispatch(updateFilter({ filter: "priceType", value }))
-          }
+          onChange={(value) => dispatch(updateFilter({ filter: "priceType", value }))}
         >
           <Option value={PRICE_TYPE.ALL}>All price</Option>
           <Option value={PRICE_TYPE.FREE}>Free</Option>

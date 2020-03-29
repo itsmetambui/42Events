@@ -14,9 +14,7 @@ import RaceFilter from "./RaceFilter"
 import { filterSelector } from "../../reducers/raceQuerySlice"
 
 const Races = () => {
-  const { isMedalView, ...filterQueries } = filterSelector(
-    useSelector((state: AppState) => state),
-  )
+  const { isMedalView, ...filterQueries } = filterSelector(useSelector((state: AppState) => state))
 
   const {
     status,
@@ -37,10 +35,7 @@ const Races = () => {
   } = useInfiniteQuery(["races", { ...filterQueries }], fetchRaces, {
     getFetchMore: (lastGroup: any, allGroup: any) => {
       const total = lastGroup.total
-      const currentTotal = allGroup.reduce(
-        (acc: number, cur: any) => (acc += cur.races.length),
-        0,
-      )
+      const currentTotal = allGroup.reduce((acc: number, cur: any) => (acc += cur.races.length), 0)
       if (currentTotal === total) return false
       return currentTotal
     },
@@ -59,36 +54,18 @@ const Races = () => {
       ) : (
         <div className="container max-w-screen-md p-6 mx-auto md:max-w-screen-lg">
           <div className="flex flex-row items-center justify-between">
-            <h1 className="m-0 text-xl font-extrabold">
-              {data[0].total} events
-            </h1>
+            <h1 className="m-0 text-xl font-extrabold">{data[0].total} events</h1>
             <div className="flex flex-row items-center">
               <span className="mx-2 text-xs">Medal view</span>
-              <Switch
-                checked={isMedalView}
-                onChange={() => dispatch(toogleMedalView())}
-              />
+              <Switch checked={isMedalView} onChange={() => dispatch(toogleMedalView())} />
             </div>
           </div>
           {data.map((group, i) => (
-            <React.Fragment key={i}>
-              {isMedalView ? (
-                <RaceMedalView data={group.races} />
-              ) : (
-                <RaceView data={group.races} />
-              )}
-            </React.Fragment>
+            <React.Fragment key={i}>{isMedalView ? <RaceMedalView data={group.races} /> : <RaceView data={group.races} />}</React.Fragment>
           ))}
           <div>
-            <button
-              onClick={() => fetchMore()}
-              disabled={!canFetchMore || isFetchingMore}
-            >
-              {isFetchingMore
-                ? "Loading more..."
-                : canFetchMore
-                ? "Load More"
-                : "Nothing more to load"}
+            <button onClick={() => fetchMore()} disabled={!canFetchMore || isFetchingMore}>
+              {isFetchingMore ? "Loading more..." : canFetchMore ? "Load More" : "Nothing more to load"}
             </button>
           </div>
           <div>{isFetching && !isFetchingMore ? "Fetching..." : null}</div>

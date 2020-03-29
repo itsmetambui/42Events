@@ -60,16 +60,10 @@ const raceQuerySlice = createSlice({
     toogleMedalView: (state: RaceQueryState): void => {
       state.isMedalView = !state.isMedalView
     },
-    updateSortType: (
-      state: RaceQueryState,
-      action: PayloadAction<SORT_TYPE>,
-    ): void => {
+    updateSortType: (state: RaceQueryState, action: PayloadAction<SORT_TYPE>): void => {
       state.sortType = action.payload
     },
-    updateFilter: (
-      state: RaceQueryState,
-      action: PayloadAction<{ [key: string]: string }>,
-    ): void => {
+    updateFilter: (state: RaceQueryState, action: PayloadAction<{ [key: string]: string }>): void => {
       const { filter, value } = action.payload
       state[filter] = value
     },
