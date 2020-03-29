@@ -3,21 +3,9 @@ import Slider from "react-slick"
 import { useMediaQuery } from "react-responsive"
 import { NextArrow, PrevArrow } from "./Arrow"
 import RaceContent from "../RaceContent/RaceContent"
+import { EventType } from "../../api/racesApi"
 
 const HALF_IMAGE_HEIGHT = 106
-
-export type EventType = {
-  id: string
-  raceName: string
-  bannerCard: string
-  medalViewImage: string
-  racePeriod: string
-  categories: string[]
-  sportType: string
-  raceRunners: number
-  eventType: string
-  racePrice: string
-}
 
 type EventCarouselProps = {
   data: EventType[]

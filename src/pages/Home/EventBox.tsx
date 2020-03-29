@@ -1,7 +1,6 @@
 import React from "react"
-import EventCarousel, {
-  EventType,
-} from "../../components/EventCarousel/EventCarousel"
+import EventCarousel from "../../components/EventCarousel/EventCarousel"
+import { EventType } from "../../api/racesApi"
 
 type EventBoxProps = {
   title: string

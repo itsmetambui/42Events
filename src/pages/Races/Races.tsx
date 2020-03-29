@@ -2,7 +2,7 @@ import React from "react"
 import { useLocation } from "react-router-dom"
 import { useQuery } from "react-query"
 import { useSelector, useDispatch } from "react-redux"
-import { Switch } from "antd"
+import { Switch, Divider } from "antd"
 
 import RaceContentLoader from "./RaceContentLoader"
 import { AppState } from "../../reducers/rootReducer"
@@ -11,9 +11,11 @@ import { fetchRaces } from "../../api/racesApi"
 import RaceView from "./RaceView"
 import { toogleMedalView } from "../../reducers/raceQuerySlice"
 import RaceMedalView from "./RaceMedalView"
+import RaceFilter from "./RaceFilter"
 
 const Races = () => {
   const { state: query } = useLocation()
+  console.log(query)
   const { status, error, data } = useQuery("races", () => fetchRaces(query))
 
   const isModalView = useSelector(
@@ -23,12 +25,15 @@ const Races = () => {
 
   return (
     <div>
+      <RaceFilter />
+      <Divider />
+
       {status === "loading" ? (
         <RaceContentLoader />
       ) : status === "error" ? (
         <h2>Error: {error.message}</h2>
       ) : (
-        <div className="container max-w-screen-md p-6 pt-10 mx-auto md:max-w-screen-lg">
+        <div className="container max-w-screen-md p-6 mx-auto md:max-w-screen-lg">
           <div className="flex flex-row items-center justify-between">
             <h1 className="m-0 text-xl font-extrabold">{data.length} events</h1>
             <div className="flex flex-row items-center">

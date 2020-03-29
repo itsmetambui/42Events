@@ -1,5 +1,5 @@
 import React from "react"
-import { EventType } from "../../components/EventCarousel/EventCarousel"
+import { EventType } from "../../api/racesApi"
 
 const RaceMedalView: React.FC<{ data: EventType[] }> = ({ data }) => {
   return (

@@ -1,6 +1,31 @@
 import backend from "../config/axios"
 
-export const fetchRoot = async () => {
+type FeaturedType = {
+  id: string
+  raceName: string
+  bannerCard: string
+}
+
+export type EventType = FeaturedType & {
+  medalViewImage: string
+  racePeriod: string
+  categories: string[]
+  sportType: string
+  raceRunners: number
+  eventType: string
+  racePrice: string
+}
+
+type RootDataType = {
+  featured: FeaturedType[]
+  startingSoon: EventType[]
+  popular: EventType[]
+  newRelease: EventType[]
+  free: EventType[]
+  past: EventType[]
+}
+
+export const fetchRoot = async (): Promise<RootDataType> => {
   const response = await backend.get("/race-events")
   const {
     data: { featured, startingSoon, popular, newRelease, free, past },
@@ -15,9 +40,11 @@ export const fetchRoot = async () => {
   }
 }
 
-export const fetchRaces = async (
-  query: { [key: string]: string } | null | undefined,
-) => {
+export const fetchRaces = async ({
+  query,
+}: {
+  query: { [key: string]: string } | null | undefined
+}): Promise<EventType[]> => {
   const params = query ? { ...query } : {}
   const response = await backend.get("/race-filters", {
     params,
@@ -25,13 +52,13 @@ export const fetchRaces = async (
   return response.data.map(mapOthers)
 }
 
-const mapFeatured = ({ _id, banner_card, race_name }: any) => ({
+const mapFeatured = ({ _id, banner_card, race_name }: any): FeaturedType => ({
   id: _id,
   bannerCard: banner_card,
   raceName: race_name,
 })
 
-const mapOthers = (event: any) => ({
+const mapOthers = (event: any): EventType => ({
   id: event._id,
   raceName: event.race_name,
   bannerCard: event.banner_card,
