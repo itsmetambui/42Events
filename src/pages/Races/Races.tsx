@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { useInfiniteQuery } from "react-query"
 import { useSelector, useDispatch } from "react-redux"
 import { Switch, Divider } from "antd"
@@ -15,6 +15,8 @@ import { filterSelector } from "../../reducers/raceQuerySlice"
 
 const Races = () => {
   const { isMedalView, ...filterQueries } = filterSelector(useSelector((state: AppState) => state))
+  const dispatch = useDispatch<AppDispatch>()
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const {
     status,
@@ -40,10 +42,24 @@ const Races = () => {
       return currentTotal
     },
   })
-  const dispatch = useDispatch<AppDispatch>()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      console.log(window.pageYOffset, window.screen.availHeight, containerRef.current!.scrollHeight)
+
+      if (window.pageYOffset + window.screen.availHeight >= containerRef.current!.scrollHeight) {
+        fetchMore()
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", () => handleScroll)
+    }
+  }, [fetchMore, containerRef])
 
   return (
-    <div>
+    <div ref={containerRef}>
       <RaceFilter />
       <Divider />
 
