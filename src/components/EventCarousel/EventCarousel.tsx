@@ -10,6 +10,7 @@ export type EventType = {
   id: string
   raceName: string
   bannerCard: string
+  medalViewImage: string
   racePeriod: string
   categories: string[]
   sportType: string

@@ -35,6 +35,7 @@ const mapOthers = (event: any) => ({
   id: event._id,
   raceName: event.race_name,
   bannerCard: event.banner_card,
+  medalViewImage: event.medalViewImage,
   racePeriod: event.racePeriod,
   categories: event.categories,
   sportType: event.sportType,
