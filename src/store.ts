@@ -16,7 +16,7 @@ import rootReducer from "./reducers/rootReducer"
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["ui"],
+  whitelist: ["ui", "raceQuery"],
 }
 
 const middleware = [

@@ -2,17 +2,14 @@ import React from "react"
 import { useQuery } from "react-query"
 import { Divider } from "antd"
 
-import backend from "../../config/axios"
 import HomeContentLoader from "./HomeContentLoader"
 import EventBox from "./EventBox"
 import FeatureCarousel from "../../components/FeatureCarousel/FeatureCarousel"
 import EventTypeList from "./EventTypeList"
+import { fetchRoot } from "../../api/racesApi"
 
 const Home: React.FC = () => {
-  const { status, error, data } = useQuery("events", async () => {
-    const response = await backend.get("/race-events")
-    return response.data
-  })
+  const { status, error, data } = useQuery("events", fetchRoot)
 
   return (
     <div>

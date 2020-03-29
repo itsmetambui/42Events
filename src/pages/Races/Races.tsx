@@ -1,18 +1,22 @@
 import React from "react"
 import { useLocation } from "react-router-dom"
 import { useQuery } from "react-query"
-import backend from "../../config/axios"
+import { useSelector, useDispatch } from "react-redux"
+
 import RaceContent from "../../components/RaceContent/RaceContent"
 import RaceContentLoader from "./RaceContentLoader"
+import { AppState } from "../../reducers/rootReducer"
+import { AppDispatch } from "../../store"
+import { fetchRaces } from "../../api/racesApi"
 
 const Races = () => {
   const { state: query } = useLocation()
-  const { status, error, data } = useQuery("races", async () => {
-    const response = await backend.get("/race-filters", {
-      params: { ...query },
-    })
-    return response.data
-  })
+  const { status, error, data } = useQuery("races", () => fetchRaces(query))
+
+  const isModalView = useSelector(
+    (state: AppState) => state.raceQuery.isMedalView,
+  )
+  const dispatch = useDispatch<AppDispatch>()
 
   return (
     <div>
