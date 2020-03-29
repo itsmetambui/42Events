@@ -1,5 +1,4 @@
 import React from "react"
-import { useLocation } from "react-router-dom"
 import { useQuery } from "react-query"
 import { useSelector, useDispatch } from "react-redux"
 import { Switch, Divider } from "antd"
@@ -15,10 +14,6 @@ import RaceFilter from "./RaceFilter"
 import { filterSelector } from "../../reducers/raceQuerySlice"
 
 const Races = () => {
-  const {
-    state: { query },
-  } = useLocation()
-
   const { isMedalView, ...filterQueries } = filterSelector(
     useSelector((state: AppState) => state),
   )

@@ -4,6 +4,9 @@ import { Link } from "react-router-dom"
 import walkLogo from "../../assets/images/category-walk.png"
 import runLogo from "../../assets/images/category-run.png"
 import bikeLogo from "../../assets/images/category-bike.png"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "../../store"
+import { updateFilter } from "../../reducers/raceQuerySlice"
 
 const types = [
   {
@@ -27,6 +30,8 @@ const types = [
 ]
 
 const EventTypeList = () => {
+  const dispatch = useDispatch<AppDispatch>()
+
   return (
     <div>
       <h1 className="text-2xl font-extrabold sm:text-3xl">Events</h1>
@@ -36,8 +41,10 @@ const EventTypeList = () => {
             <Link
               to={{
                 pathname: "/races",
-                state: { query: { sportType: type } },
               }}
+              onClick={() =>
+                dispatch(updateFilter({ filter: "sportType", value: type }))
+              }
             >
               <div
                 className="block w-full h-full p-4 text-sm font-medium text-white bg-no-repeat rounded-lg shadow-lg cursor"
