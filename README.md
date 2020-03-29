@@ -1,44 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# A test project for 42Race - The top virtual race platform - with React / Typescript / Redux
 
-## Available Scripts
+This project is host at: [42race.netlify.com](42race.netlify.com)
+Below is the main points that help reviews to better go through the project 👍.
 
-In the project directory, you can run:
+### It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses:
 
-### `npm start`
+[Typescript](https://github.com/microsoft/TypeScript) because it's 2020  
+[React Router](https://github.com/ReactTraining/react-router) to handle client side routing  
+[Redux](https://github.com/reduxjs/react-redux) to handle State Management
+[Redux-toolkit](https://redux-toolkit.js.org/) to reduce Redux boilerplate
+[React Query](https://github.com/tannerlinsley/react-query) for data fetching
+[Ant Design](https://github.com/ant-design/ant-design) for its very complete set of components  
+[Styled Components](https://github.com/styled-components/styled-components) to extend Ant's default component styling  
+[TailwindCSS](https://github.com/tailwindcss/tailwindcss) to elegantly handle the rest of your app's UI  
+[LinguiJS](https://github.com/lingui/js-lingui) because that's the best all-in-one i18n solution that we found
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### And also:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[Axios](https://github.com/axios/axios) as a proper Http client  
+[Prettier](https://github.com/prettier/prettier) because it's just too helpful
 
-### `npm test`
+## Main features
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Header
+- Sticky header that hides when scroll down / shows when scroll up or at the top of the page.
+- A control modal contains navigation links.
 
-### `npm run build`
+### Home page
+- A responsive carousel to display featured races.
+- An event list to navigate to Race page.
+- Multiple other responsive carousels to show main races.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Races page
+- A form to filter races based on sport type, time, event type, pricing.
+- Persist filter states to localstorage with redux-persist.
+- Sort races based on start date, end date, most popular, new release.
+- A switch to change between normal and medal view.
+- Data fetching with infinite scroll.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Project structure
+- src/pages: the 2 main pages of the projects - Home and Race
+- src/components: components that can be reused
+- src/reducers: redux state slices with redux toolkit
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### That's it, thank you for reading, happy hacking 🎉
