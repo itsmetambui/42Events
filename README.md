@@ -1,6 +1,6 @@
 # 42Race - The top virtual race platform - with React / Typescript / Redux
 
-- This project is host at: [42race.netlify.com](42race.netlify.com)
+- This project is hosted at: [42race.netlify.com](42race.netlify.com)
 - Below is the main points that'll help reviewers to better go through the project 👍.
 
 ### It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses:
