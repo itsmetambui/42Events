@@ -19,13 +19,7 @@ const Home: React.FC = () => {
         <h2>Error: {error.message}</h2>
       ) : (
         <div className="container mx-auto">
-          <FeatureCarousel
-            data={data.featured.map(({ _id, banner_card, race_name }: any) => ({
-              id: _id,
-              bannerCard: banner_card,
-              raceName: race_name,
-            }))}
-          />
+          <FeatureCarousel data={data.featured} />
 
           <div className="w-full max-w-screen-lg p-6 mx-auto overflow-hidden">
             <EventTypeList />

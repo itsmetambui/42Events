@@ -1,6 +1,7 @@
 import React from "react"
-import EventCarousel from "../../components/EventCarousel/EventCarousel"
-import { EventType } from "@testing-library/react"
+import EventCarousel, {
+  EventType,
+} from "../../components/EventCarousel/EventCarousel"
 
 type EventBoxProps = {
   title: string
@@ -8,18 +9,6 @@ type EventBoxProps = {
 }
 
 const EventBox: React.FC<EventBoxProps> = ({ title, data }) => {
-  const carouselData = data.map((event: any) => ({
-    id: event._id,
-    raceName: event.race_name,
-    bannerCard: event.banner_card,
-    racePeriod: event.racePeriod,
-    categories: event.categories,
-    sportType: event.sportType,
-    raceRunners: event.raceRunners,
-    eventType: event.eventType,
-    racePrice: event.racePrice,
-  }))
-
   return (
     <div>
       <div className="flex flex-row items-center justify-between">
@@ -28,7 +17,7 @@ const EventBox: React.FC<EventBoxProps> = ({ title, data }) => {
         </h2>
         <span>View all ></span>
       </div>
-      <EventCarousel data={carouselData} />
+      <EventCarousel data={data} />
     </div>
   )
 }
